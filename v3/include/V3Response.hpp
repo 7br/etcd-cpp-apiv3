@@ -22,6 +22,8 @@ namespace etcdv3
     etcdv3::KeyValue const & get_value() const;
     etcdv3::KeyValue const & get_prev_value() const;
     bool has_values() const;
+    void set_key(std::string const &key);
+    std::string const & get_key() const;
   protected:
     int error_code;
     int index;
@@ -31,6 +33,7 @@ namespace etcdv3
     etcdv3::KeyValue prev_value; 
     std::vector<etcdv3::KeyValue> values;
     std::vector<etcdv3::KeyValue> prev_values; 
+    std::string key; // for lock
   };
 }
 #endif

@@ -11,6 +11,7 @@ using grpc::Status;
 using etcdserverpb::KV;
 using etcdserverpb::Watch;
 using etcdserverpb::Lease;
+using etcdserverpb::Lock;
 
 namespace etcdv3
 {
@@ -34,6 +35,7 @@ namespace etcdv3
     KV::Stub* kv_stub;
     Watch::Stub* watch_stub;
     Lease::Stub* lease_stub;
+    Lock::Stub* lock_stub;
   };
 
   class Action

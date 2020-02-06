@@ -26,8 +26,9 @@ etcdv3::AsyncLockResponse etcdv3::AsyncLockAction::ParseResponse()
   else
   { 
     lock_resp.ParseResponse(reply);
+    lock_resp.set_action(etcdv3::LOCK_ACTION);
   }
-    
+
   return lock_resp;
 }
 
@@ -53,6 +54,7 @@ etcdv3::AsyncUnlockResponse etcdv3::AsyncUnlockAction::ParseResponse()
   else
   { 
     unlock_resp.ParseResponse(reply);
+    unlock_resp.set_action(etcdv3::UNLOCK_ACTION);
   }
     
   return unlock_resp;

@@ -1,4 +1,4 @@
-#ifndef __ASYNC_LOCKCTION_HPP__
+#ifndef __ASYNC_LOCKACTION_HPP__
 #define __ASYNC_LOCKACTION_HPP__
 
 #include <grpc++/grpc++.h>

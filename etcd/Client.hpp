@@ -14,6 +14,7 @@
 using etcdserverpb::KV;
 using etcdserverpb::Watch;
 using etcdserverpb::Lease;
+using etcdserverpb::Lock;
 
 namespace etcd
 {
@@ -181,11 +182,24 @@ namespace etcd
      */
     pplx::task<Response> leasegrant(int ttl);
 
+    /**
+     * Gains a lock at a key.
+     * @param key is the key to be used to request the lock.
+     */
+    pplx::task<Response> lock(std::string const &key);
+
+    /**
+     * Releases a lock at a key.
+     * @param key is the lock key to release.
+     */
+    pplx::task<Response> unlock(std::string const &key);
+
   private:
 
     std::unique_ptr<KV::Stub> stub_;
     std::unique_ptr<Watch::Stub> watchServiceStub;
     std::unique_ptr<Lease::Stub> leaseServiceStub;
+    std::unique_ptr<Lock::Stub> lockServiceStub;
 };
 
 

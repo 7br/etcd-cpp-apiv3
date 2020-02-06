@@ -98,6 +98,11 @@ namespace etcd
      */
     std::string const & key(int index) const;
 
+    /**
+     * Returns the lock key.
+     */
+    std::string const & lock_key() const;
+
   protected:  
     Response(const etcdv3::V3Response& response);
     Response(int error_code, char const * error_message);
@@ -110,6 +115,7 @@ namespace etcd
     Value       _prev_value;
     Values      _values;
     Keys        _keys;
+    std::string _lock_key; // for lock
     friend class SyncClient;
     friend class etcdv3::AsyncWatchAction;
     friend class Client;

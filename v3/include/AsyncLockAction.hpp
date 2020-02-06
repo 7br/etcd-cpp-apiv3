@@ -2,17 +2,17 @@
 #define __ASYNC_LOCKACTION_HPP__
 
 #include <grpc++/grpc++.h>
-#include "proto/rpc.grpc.pb.h"
+#include "proto/v3lock.grpc.pb.h"
 #include "v3/include/Action.hpp"
 #include "v3/include/AsyncLockResponse.hpp"
 #include "etcd/Response.hpp"
 
 
 using grpc::ClientAsyncResponseReader;
-using etcdserverpb::LockRequest;
-using etcdserverpb::LockResponse;
-using etcdserverpb::UnlockRequest;
-using etcdserverpb::UnlockResponse;
+using v3lockpb::LockRequest;
+using v3lockpb::LockResponse;
+using v3lockpb::UnlockRequest;
+using v3lockpb::UnlockResponse;
 
 
 namespace etcdv3

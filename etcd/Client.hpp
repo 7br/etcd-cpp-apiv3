@@ -10,11 +10,12 @@
 
 #include <grpc++/grpc++.h>
 #include "proto/rpc.grpc.pb.h"
+#include "proto/v3lock.grpc.pb.h"
 
 using etcdserverpb::KV;
 using etcdserverpb::Watch;
 using etcdserverpb::Lease;
-using etcdserverpb::Lock;
+using v3lockpb::Lock;
 
 namespace etcd
 {

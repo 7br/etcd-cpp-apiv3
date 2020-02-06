@@ -5,7 +5,7 @@
 void etcdv3::AsyncLockResponse::ParseResponse(LockResponse& resp)
 {
   index = resp.header().revision();
-  key = resp.key();
+  lock_key = resp.key();
 }
 
 void etcdv3::AsyncUnlockResponse::ParseResponse(UnlockResponse& resp)

@@ -25,6 +25,7 @@ etcd::Response::Response(const etcdv3::V3Response& reply)
 
   _prev_value = Value(reply.get_prev_value());
 
+  _lock_key = reply.get_lock_key();
 }
 
 
@@ -94,4 +95,8 @@ etcd::Keys const & etcd::Response::keys() const
 std::string const & etcd::Response::key(int index) const
 {
   return _keys[index];
+}
+
+std::string const & etcd::Response::lock_key() const {
+  return _lock_key;
 }

@@ -61,10 +61,10 @@ bool etcdv3::V3Response::has_values() const
   return values.size() > 0;
 }
 
-void etcdv3::V3Response::set_key(std::string const &key) {
-  this->key = key;
+void etcdv3::V3Response::set_lock_key(std::string const &key) {
+  this->lock_key = key;
 }
 
-std::string const & etcdv3::V3Response::get_key() const {
-  return this->key;
+std::string const & etcdv3::V3Response::get_lock_key() const {
+  return this->lock_key;
 }

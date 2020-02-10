@@ -6,6 +6,7 @@ add_executable(etcd_test EtcdTest.cpp
                          WatcherTest.cpp
                          LockTest.cpp)
 set_property(TARGET etcd_test PROPERTY CXX_STANDARD 11)
+target_include_directories(etcd_test PRIVATE ${CMAKE_SOURCE_DIR}/proto)
 
 target_link_libraries(etcd_test etcd-cpp-api)
 

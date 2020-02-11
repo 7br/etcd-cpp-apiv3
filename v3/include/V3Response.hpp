@@ -2,6 +2,8 @@
 #define __V3_RESPONSE_HPP__
 
 #include <grpc++/grpc++.h>
+#include "proto/kv.pb.h"
+
 #include "v3/include/KeyValue.hpp"
 
 namespace etcdv3
@@ -23,7 +25,8 @@ namespace etcdv3
     etcdv3::KeyValue const & get_prev_value() const;
     bool has_values() const;
     void set_lock_key(std::string const &key);
-    std::string const & get_lock_key() const;
+    std::string const &get_lock_key() const;
+    std::vector<mvccpb::Event> const & get_events() const;
   protected:
     int error_code;
     int index;
@@ -34,6 +37,7 @@ namespace etcdv3
     std::vector<etcdv3::KeyValue> values;
     std::vector<etcdv3::KeyValue> prev_values; 
     std::string lock_key; // for lock
+    std::vector<mvccpb::Event> events; // for watch
   };
 }
 #endif

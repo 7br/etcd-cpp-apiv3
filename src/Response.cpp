@@ -1,4 +1,5 @@
 #include "etcd/Response.hpp"
+#include "v3/include/V3Response.hpp"
 
 #include <iostream>
 
@@ -26,6 +27,7 @@ etcd::Response::Response(const etcdv3::V3Response& reply)
   _prev_value = Value(reply.get_prev_value());
 
   _lock_key = reply.get_lock_key();
+  _events = reply.get_events();
 }
 
 
@@ -100,3 +102,7 @@ std::string const & etcd::Response::key(int index) const
 std::string const & etcd::Response::lock_key() const {
   return _lock_key;
 }
+
+std::vector<mvccpb::Event> const & etcd::Response::events() const {
+  return this->_events;
+};

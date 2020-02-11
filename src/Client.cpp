@@ -1,6 +1,7 @@
 #include <memory>
 #include "etcd/Client.hpp"
 #include "v3/include/action_constants.hpp"
+#include "v3/include/Action.hpp"
 #include "v3/include/AsyncTxnResponse.hpp"
 #include "v3/include/AsyncRangeResponse.hpp"
 #include "v3/include/AsyncWatchResponse.hpp"
@@ -18,6 +19,7 @@
 #include "v3/include/AsyncWatchAction.hpp"
 #include "v3/include/AsyncLeaseGrantAction.hpp"
 #include "v3/include/AsyncLockAction.hpp"
+#include "v3/include/AsyncTxnAction.hpp"
 
 
 using grpc::Channel;
@@ -345,4 +347,9 @@ pplx::task<etcd::Response> etcd::Client::unlock(std::string const &key) {
   return Response::create(call);
 }
 
-
+pplx::task<etcd::Response> etcd::Client::txn(etcdv3::Transaction const &txn) {
+  etcdv3::ActionParameters params;
+  params.kv_stub = stub_.get();
+  std::shared_ptr<etcdv3::AsyncTxnAction> call(new etcdv3::AsyncTxnAction(params, txn));
+  return Response::create(call);
+}

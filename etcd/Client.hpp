@@ -2,9 +2,6 @@
 #define __ETCD_CLIENT_HPP__
 
 #include "etcd/Response.hpp"
-#include "v3/include/Transaction.hpp"
-#include "v3/include/AsyncTxnResponse.hpp"
-#include "v3/include/Action.hpp"
 
 #include <string>
 
@@ -16,6 +13,10 @@ using etcdserverpb::KV;
 using etcdserverpb::Watch;
 using etcdserverpb::Lease;
 using v3lockpb::Lock;
+
+namespace etcdv3 {
+  class Transaction;
+}
 
 namespace etcd
 {
@@ -195,8 +196,13 @@ namespace etcd
      */
     pplx::task<Response> unlock(std::string const &key);
 
-  private:
+     /**
+      * Execute a etcd transaction.
+      * @param txn is the transaction object to be executed.
+      */
+    pplx::task<Response> txn(etcdv3::Transaction const &txn);
 
+  private:
     std::unique_ptr<KV::Stub> stub_;
     std::unique_ptr<Watch::Stub> watchServiceStub;
     std::unique_ptr<Lease::Stub> leaseServiceStub;
